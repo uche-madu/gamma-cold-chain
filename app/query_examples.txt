@@ -1,0 +1,108 @@
+{
+  "prospect_info": {
+    "prospect_email": "dreemer6@yahoo.com",
+    "prospect_phone": "+2348061234567",
+    "prospect_name": "Michael Adeyemi",
+    "company_name": "InnovaTech Solutions",
+    "prospect_title": "CTO",
+    "industry": "tech",
+    "engagement_level": 3,
+    "objections": [
+      "integration complexity",
+      "data privacy concerns"
+    ]
+  },
+  "outreach_description": "We offer state-of-the-art cyber insurance solutions designed for tech companies, ensuring seamless integration and robust data privacy measures.",
+  "insurance_company_name": "CyberShield Insurance",
+  "sender_name": "Laura Okonkwo",
+  "sender_title": "Technology Risk Advisor"
+}
+
+
+
+
+{
+  "prospect_info": {
+    "prospect_email": "dreemer6@yahoo.com",
+    "prospect_phone": "+2348039876543",
+    "prospect_name": "Dr. Adebayo Kunle",
+    "company_name": "HealthFirst Clinics",
+    "prospect_title": "Medical Director",
+    "industry": "healthcare",
+    "engagement_level": 5,
+    "objections": [
+      "concerns about regulatory compliance",
+      "cost of coverage"
+    ]
+  },
+  "outreach_description": "We provide comprehensive medical malpractice insurance solutions tailored for healthcare providers, ensuring regulatory compliance and cost-effectiveness while protecting your practice.",
+  "insurance_company_name": "MediSure Insurance",
+  "sender_name": "John Chukwuma",
+  "sender_title": "Senior Insurance Consultant"
+}
+
+
+
+{
+  "prospect_info": {
+    "prospect_email": "dreemer6@yahoo.com",
+    "prospect_phone": "+2348023456789",
+    "prospect_name": "Sade Balogun",
+    "company_name": "SecureBank Inc.",
+    "prospect_title": "Head of Risk Management",
+    "industry": "finance",
+    "engagement_level": 2,
+    "objections": [
+      "cost constraints",
+      "regulatory hurdles"
+    ]
+  },
+  "outreach_description": "We provide specialized financial liability insurance that helps banks manage risks while ensuring regulatory compliance and cost efficiency.",
+  "insurance_company_name": "FinSure Insurance",
+  "sender_name": "David Okoli",
+  "sender_title": "Senior Risk Consultant"
+}
+
+
+
+{
+  "prospect_info": {
+    "prospect_email": "dreemer6@yahoo.com",
+    "prospect_phone": "+2348098765432",
+    "prospect_name": "Chinedu Nwosu",
+    "company_name": "TransLogistics Inc.",
+    "prospect_title": "Operations Manager",
+    "industry": "transport",
+    "engagement_level": 4,
+    "objections": [
+      "fleet maintenance costs",
+      "driver safety concerns"
+    ]
+  },
+  "outreach_description": "Our specialized transport insurance solutions cover fleet, cargo, and driver liability, reducing downtime and enhancing operational safety.",
+  "insurance_company_name": "TransSure Insurance",
+  "sender_name": "Rebecca Adebayo",
+  "sender_title": "Transport Insurance Specialist"
+}
+
+
+
+{
+  "prospect_info": {
+    "prospect_email": "dreemer6@yahoo.com",
+    "prospect_phone": "+2348076543210",
+    "prospect_name": "Kunle Akinwale",
+    "company_name": "Global Manufacturing Ltd.",
+    "prospect_title": "Plant Manager",
+    "industry": "manufacturing",
+    "engagement_level": 3,
+    "objections": [
+      "production downtime",
+      "safety compliance"
+    ]
+  },
+  "outreach_description": "We offer comprehensive product liability and operational insurance to keep manufacturing lines running smoothly while ensuring safety and regulatory compliance.",
+  "insurance_company_name": "ManuSure Insurance",
+  "sender_name": "Emily Eze",
+  "sender_title": "Manufacturing Risk Advisor"
+}

@@ -1,0 +1,6 @@
+prospect_email,prospect_name,prospect_phone,company_name,prospect_title,industry,engagement_level,objections,outreach_description,insurance_company_name,sender_name,sender_title,outreach_type
+dreemer6@yahoo.com,John Doe,+2348067365519,Acme Corp,CTO,Tech,High,"Pricing, Competitor",Introducing new AI-driven insurance,SecureIns,Jane Smith,Sales Manager,email
+dreemer6@yahoo.com,Alice Brown,+2348067365519,Global Fin,CEO,Finance,Medium,"Trust Issues",Explaining regulatory compliance benefits,SecureIns,Jane Smith,Sales Manager,call
+dreemer6@yahoo.com,Bob Williams,+2348067365519,HealthTech Inc,CFO,Healthcare,Low,"Budget Constraints",Highlighting cost-saving insurance,SecureIns,Jane Smith,Sales Manager,email
+dreemer6@yahoo.com,Susan Clark,+2348067365519,BuildIt Ltd,Operations Manager,Construction,High,"Past Bad Experience",Demonstrating risk coverage policies,SecureIns,Jane Smith,Sales Manager,call
+dreemer6@yahoo.com,Michael Lee,+2348067365519,AutoDrive,Head of Logistics,Automotive,Medium,"Too Expensive",Discussing flexible payment plans,SecureIns,Jane Smith,Sales Manager,email

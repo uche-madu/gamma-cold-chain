@@ -1,0 +1,132 @@
+# app/services/email_generation.py
+from typing import List
+
+from langchain.prompts import ChatPromptTemplate
+from langchain_core.runnables import RunnableParallel
+from fastapi_mail import FastMail, ConnectionConfig, MessageSchema, MessageType
+from loguru import logger
+
+from app.core.settings import settings
+from app.core.config import llama3_70b_llm
+
+
+conf = ConnectionConfig(
+    MAIL_USERNAME=settings.mail_username,
+    MAIL_PASSWORD=settings.mail_password,
+    MAIL_FROM=settings.mail_from,
+    MAIL_PORT=settings.mail_port,
+    MAIL_SERVER=settings.mail_server,
+    MAIL_FROM_NAME=settings.mail_from_name,
+    MAIL_STARTTLS=settings.mail_starttls,
+    MAIL_SSL_TLS=settings.mail_ssl_tls,
+    USE_CREDENTIALS=settings.use_credentials,
+    VALIDATE_CERTS=settings.validate_certs
+)
+
+fast_mail = FastMail(conf)
+
+# Define prompt templates
+email_prompt_template = ChatPromptTemplate.from_messages([
+    ("system", "You are a professional email assistant. Output only the email content following the provided format. Do not include any extra commentary."),
+    ("human", """Compose a cold email for an insurance company targeting a prospect named {company} in the {industry} industry.
+    Consider the prospect's previous engagement level: {engagement_level} and potential objections: {objections}.
+    Also, incorporate the following outreach description into the email content: {outreach_description}.
+    The email should be professional, persuasive, and include a clear call-to-action.
+
+    Output ONLY the email content in exactly the following format (do not include any extra explanations):
+
+    Dear [Recipient's Name],
+
+    [Email Body]
+
+    [Closure],
+    {sender_name}
+    {sender_title}
+    {sender_company}
+    """)
+])
+
+subject_line_template = ChatPromptTemplate.from_messages([
+    ("system", "You are a creative and concise subject line generator."),
+    ("human", "Generate a single, concise, and engaging subject line for a cold email targeting a prospect named {company} in the {industry} industry. Consider the prospect's previous engagement level {engagement_level}, potential objections {objections}, and incorporate the following outreach description: {outreach_description}. Provide only the subject line without any further explanation.")
+])
+
+# Engagement advice prompt template with explicit roles.
+advice_prompt_template = ChatPromptTemplate.from_messages([
+    ("system", "You are an expert sales engagement advisor."),
+    ("human", """Provide follow-up engagement advice for a prospect named {company} in the {industry} industry.
+Consider the prospect's previous engagement level: {engagement_level} and potential objections: {objections}, as well as the following outreach description: {outreach_description}.
+Offer actionable suggestions to improve response rates.
+""")
+])
+def get_industry_focus(industry: str) -> str:
+    industry = industry.lower()
+    if industry == "tech":
+        return "emphasize innovation and cutting-edge technology solutions"
+    elif industry == "finance":
+        return "highlight security and robust ROI potential"
+    elif industry == "healthcare":
+        return "stress compliance and efficiency"
+    else:
+        return "highlight tailored benefits"
+
+def format_objections(objections: List[str]) -> str:
+    return ", ".join(objections) if objections else ""
+
+def generate_email_content(params: dict):
+    """
+    Given a dictionary of parameters, generate both the email content and engagement advice using branched chaining.
+    """
+
+    # Add derived parameters.
+    params["industry_focus"] = get_industry_focus(params["industry"])
+    params["objections"] = format_objections(params.get("objections", []))
+
+    # Create LLM chains for email and advice generation
+    body_chain = email_prompt_template | llama3_70b_llm
+    subject_chain = subject_line_template | llama3_70b_llm
+    advice_chain = advice_prompt_template | llama3_70b_llm
+    
+    # Use RunnableParallel to run all chains concurrently.
+    parallel_chain = RunnableParallel({
+        "email_body": body_chain,
+        "subject_line": subject_chain,
+        "engagement_advice": advice_chain,
+    })
+    
+    logger.info("Running parallel LCEL chain for email body, subject line, and engagement advice generation")
+    result = parallel_chain.invoke(params)
+    
+    # Convert outputs to plain strings if they are AIMessage objects.
+    def to_str(x):
+        return x.content if hasattr(x, "content") else str(x)
+    
+    return {
+        "email_body": to_str(result.get("email_body")),
+        "subject_line": to_str(result.get("subject_line")),
+        "engagement_advice": to_str(result.get("engagement_advice"))
+    }
+
+
+async def send_email(to_email: str, generated_content: dict):
+    """
+    Send an email using FastAPI-Mail.
+    
+    Args:
+        to_email (str): Recipient's email address.
+        generated_content (dict): Dictionary containing 'subject_line' and 'email_body'.
+    """
+    subject = generated_content.get("subject_line", "")
+    body = generated_content.get("email_body", "")
+    
+    message = MessageSchema(
+        subject=subject,
+        recipients=[to_email],
+        body=body,
+        subtype=MessageType.html,
+    )
+    
+    fm = FastMail(conf)
+    logger.info(f"Sending email to {to_email} with subject: {subject}")
+    await fm.send_message(message)
+    logger.success("Email sent successfully")
