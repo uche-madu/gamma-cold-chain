@@ -8,7 +8,7 @@ class Prospect(BaseModel):
     company_name: str = Field(..., description="The name of the prospect's company.")
     prospect_title: Optional[str] = Field(None, description="The title of the prospect at their company.")
     industry: str = Field(..., description="The industry in which the prospect's company operates.")
-    engagement_level: int = Field(..., description="The previous engagement level (a score from 1 to 10).")
+    engagement_level: int = Field(..., ge=0, lt=5, description="The previous engagement level (a score from 0 to 4).")
     objections: Optional[List[str]] = Field(None, description="A potential objection raised by the prospect.")
 
 class EmailRequest(BaseModel):
@@ -26,6 +26,6 @@ class EmailResponse(BaseModel):
    - **[Value proposition]**: Explain how your insurance solution helps companies in their industry.  
    - **[Objection handling]**: Address a common concern relevant to their industry.  
    - **[CTA]**: Suggest a **quick call, demo, or free consultation**. """)
-    engagement_advice: str = Field(..., description="A **follow-up strategy** and recommendations to keep the client engaged based on their industry and potential objections.")
+    engagement_advice: str = Field(..., description="A detailed **follow-up strategy** and recommendations to keep the client engaged based.")
     
     

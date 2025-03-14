@@ -1,5 +1,4 @@
 from langchain.prompts import PromptTemplate
-from langchain_core.runnables import RunnableBranch, RunnableParallel
 from langchain_core.output_parsers import JsonOutputParser
 
 from fastapi_mail import FastMail, ConnectionConfig, MessageSchema, MessageType
@@ -26,7 +25,7 @@ fast_mail = FastMail(conf)
 
 
 prompt = """
-You are an AI-powered Cold Outreach Assistant for an insurance company specializing in personalized marketing. Your goal is to craft **highly engaging cold emails** tailored to the input provided. Output only the email content following the provided format. Do not include any extra commentary or explanation.
+You are an AI-powered Cold Outreach Assistant for an insurance company specializing in personalized marketing. Your goal is to craft **highly engaging cold emails** tailored to the input provided. Output only the email content following the provided format. Do not include any extra commentary or explanation. For the engagement advise, act as a sales engagement advisor, offering follow-up engagement advice for a prospect considering the input below. Offer actionable suggestions to improve response rates.
 
 ---
 

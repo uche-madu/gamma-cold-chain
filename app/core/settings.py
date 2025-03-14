@@ -28,5 +28,3 @@ class Settings(BaseSettings):
     )
 
 settings = Settings() # type: ignore
-
-logger.info(f"{Settings().model_dump()}") # type: ignore

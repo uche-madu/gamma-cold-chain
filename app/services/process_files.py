@@ -20,8 +20,8 @@ async def extract_prospects(file_path):
         return None
 
     required_columns = {
-        "email": ["prospect_email", "prospect_name", "company_name", "prospect_title", "industry", "engagement_level", "objections", "outreach_type"],
-        "call": ["prospect_phone", "prospect_name", "company_name", "prospect_title", "industry", "engagement_level", "objections", "outreach_type"]
+        "email": ["prospect_email", "prospect_name", "company_name", "prospect_title", "industry", "engagement_level", "objections", "outreach_type", "sender_name", "sender_title", "insurance_company_name", "outreach_description"],
+        "call": ["prospect_phone", "prospect_name", "company_name", "prospect_title", "industry", "engagement_level", "objections", "outreach_type", "sender_name", "sender_title", "insurance_company_name", "outreach_description"]
     }
 
     if "outreach_type" not in df.columns:
@@ -90,6 +90,33 @@ async def process_outreach(file_path, output_file):
         return row
 
 
+    # async def handle_call(row):
+    #     logger.info(f"Generating call script for {row['company_name']}")
+    #     response = await generate_call_script(row)
+
+    #     if not response or not response.call_script:
+    #         logger.warning(f"Call script generation failed for {row['company_name']}")
+    #         return row  # Return row unchanged
+
+    #     logger.info(f"Generated call script for {row['company_name']}")
+
+    #     row["call_script"] = response.call_script
+    #     row["engagement_advice"] = response.engagement_advice
+
+    #     # Make the call
+    #     logger.info(f"Making call to {row['prospect_phone']} for {row['company_name']}")
+    #     call_status = await make_call(row["prospect_phone"], response.call_script)
+    #     logger.critical(f"make_call called with: {row["prospect_phone"]}, {response.call_script}")
+
+    #     if call_status:
+    #         logger.success(f"Call completed with status: {call_status} for {row['company_name']}")
+    #     else:
+    #         logger.error(f"Call failed for {row['company_name']}")
+
+    #     row["call_status"] = call_status
+    #     return row
+    
+
     async def handle_call(row):
         logger.info(f"Generating call script for {row['company_name']}")
         response = await generate_call_script(row)
@@ -100,21 +127,22 @@ async def process_outreach(file_path, output_file):
 
         logger.info(f"Generated call script for {row['company_name']}")
 
-        row["call_script"] = response.call_script
-        row["engagement_advice"] = response.engagement_advice
+        # Ensure the row is updated correctly
+        updated_row = row.copy()
+        updated_row["call_script"] = response.call_script
+        updated_row["engagement_advice"] = response.engagement_advice
 
         # Make the call
-        logger.info(f"Making call to {row['prospect_phone']} for {row['company_name']}")
-        call_status = await make_call(row["prospect_phone"], response.call_script)
-        logger.critical(f"make_call called with: {row["prospect_phone"]}, {response.call_script}")
+        logger.info(f"Making call to {updated_row['prospect_phone']} for {updated_row['company_name']}")
+        call_status = await make_call(updated_row["prospect_phone"], response.call_script)
 
         if call_status:
-            logger.success(f"Call completed with status: {call_status} for {row['company_name']}")
+            logger.success(f"Call successfully placed to {row['prospect_phone']} for {row['company_name']}")
         else:
-            logger.error(f"Call failed for {row['company_name']}")
+            logger.error(f"Failed to place call to {row['prospect_phone']} for {row['company_name']}")
 
-        row["call_status"] = call_status
-        return row
+        return updated_row
+
 
 
     branch = RunnableBranch(

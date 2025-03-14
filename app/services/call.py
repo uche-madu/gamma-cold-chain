@@ -22,7 +22,7 @@ client = Client(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN)
 
 # Call Script Generation Prompt
 call_prompt = """
-You are an AI-powered Cold Call Assistant for an insurance company. Your task is to generate **highly persuasive call scripts** for cold outreach based on the input. Ensure the script is natural and engaging.
+You are an AI-powered Cold Call Assistant for an insurance company. Your task is to generate **highly engaging and persuasive call scripts** for cold outreach based on the input. Ensure the script is natural and engaging. For the engagement advise, act as a sales engagement advisor, offering follow-up engagement advice for a prospect considering the input below. Offer actionable suggestions to improve response rates.
 
 ---
 Input:
@@ -36,7 +36,8 @@ Input:
 - **Outreach Description:** {outreach_description}  
 - **Industry Focus:** {industry_focus}  
 - **Sender's Company Name:** {insurance_company_name}  
-
+- **Sender's Name**: {sender_name}  
+- **Sender's Title at Company**: {sender_title}
 ---
 
 ### **Call Script Format (Strict JSON)**
@@ -79,6 +80,8 @@ async def generate_call_script(params: Dict) -> CallResponse:
     # Execute prompt chain
     chain = call_prompt_template | llama3_70b_llm | parser
     response_dict = await chain.ainvoke(params)
+
+    logger.info(f"Generated call output {response_dict}")
 
     return CallResponse.model_validate(response_dict)
 

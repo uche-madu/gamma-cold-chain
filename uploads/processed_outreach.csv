@@ -1,6 +1,34 @@
-prospect_email,prospect_name,prospect_phone,company_name,prospect_title,industry,engagement_level,objections,outreach_description,insurance_company_name,sender_name,sender_title,outreach_type
-dreemer6@yahoo.com,John Doe,2348067365519,Acme Corp,CTO,Tech,High,"['Pricing', ' Competitor']",Introducing new AI-driven insurance,SecureIns,Jane Smith,Sales Manager,email
-dreemer6@yahoo.com,Alice Brown,2348067365519,Global Fin,CEO,Finance,Medium,['Trust Issues'],Explaining regulatory compliance benefits,SecureIns,Jane Smith,Sales Manager,call
-dreemer6@yahoo.com,Bob Williams,2348067365519,HealthTech Inc,CFO,Healthcare,Low,['Budget Constraints'],Highlighting cost-saving insurance,SecureIns,Jane Smith,Sales Manager,email
-dreemer6@yahoo.com,Susan Clark,2348067365519,BuildIt Ltd,Operations Manager,Construction,High,['Past Bad Experience'],Demonstrating risk coverage policies,SecureIns,Jane Smith,Sales Manager,call
-dreemer6@yahoo.com,Michael Lee,2348067365519,AutoDrive,Head of Logistics,Automotive,Medium,['Too Expensive'],Discussing flexible payment plans,SecureIns,Jane Smith,Sales Manager,email
+prospect_email,prospect_name,prospect_phone,company_name,prospect_title,industry,engagement_level,objections,outreach_description,insurance_company_name,sender_name,sender_title,outreach_type,industry_focus,subject,email,engagement_advice
+dreemer6@yahoo.com,John Doe,2348067365519,Acme Corp,CTO,Tech,High,"['Pricing', ' Competitor']",Introducing new AI-driven insurance,SecureIns,Jane Smith,Sales Manager,email,emphasize innovation and cutting-edge technology solutions.,Revolutionize Acme Corp's Risk Management with AI,"Hi John,
+
+As a fellow tech enthusiast and CTO at Acme Corp, I'm excited to introduce you to SecureIns, the pioneer in AI-driven insurance solutions. Our innovative approach is designed to help forward-thinking companies like yours stay ahead of the curve.
+
+By leveraging cutting-edge technology, our insurance products provide unparalleled risk management capabilities, tailored to the unique needs of tech companies. With SecureIns, you can rest assured that your business is protected from the unexpected, allowing you to focus on what matters most - driving innovation and growth.
+
+I'd love to discuss how our AI-driven insurance can help Acme Corp overcome the challenges of traditional insurance models. Would you be open to a quick call to explore the possibilities?
+
+Best regards,
+Jane Smith
+Sales Manager, SecureIns","Since John has shown high engagement in the past, it's essential to personalize the follow-up approach. If John doesn't respond within 3-4 days, send a follow-up email highlighting a recent industry report or news article that showcases the benefits of AI-driven insurance in the tech sector. This will help keep the conversation relevant and timely. Additionally, consider sending a LinkedIn connection request to establish a secondary communication channel. If John expresses interest, schedule a call to discuss pricing and competitor concerns, and be prepared to offer customized solutions that address these objections."
+dreemer6@yahoo.com,Bob Williams,2348067365519,HealthTech Inc,CFO,Healthcare,Low,['Budget Constraints'],Highlighting cost-saving insurance,SecureIns,Jane Smith,Sales Manager,email,stress compliance and efficiency.,Cost-Saving Insurance Solutions for HealthTech Inc,"Hi Bob,
+
+As the CFO of HealthTech Inc, I'm sure you're constantly looking for ways to optimize your company's budget without compromising on essential services. That's where SecureIns comes in.
+
+Our personalized insurance solutions are designed specifically for the healthcare industry, with a focus on compliance and efficiency. By switching to SecureIns, you can expect to save up to 20% on your current insurance costs.
+
+I'd love to schedule a quick call to discuss how our solutions can benefit HealthTech Inc. Would you be open to a 15-minute conversation next week?
+
+Best regards,
+Jane Smith
+Sales Manager, SecureIns","Based on Bob's low engagement level, it's essential to keep the email concise and focused on the value proposition. The mention of cost savings will likely resonate with him as a CFO. For follow-up, I recommend a phone call to discuss the potential savings in more detail. If Bob doesn't respond, consider sending a follow-up email highlighting a case study of a similar healthcare company that benefited from SecureIns' solutions. This will help build credibility and showcase the tangible results of your insurance solutions."
+dreemer6@yahoo.com,Michael Lee,2348067365519,AutoDrive,Head of Logistics,Automotive,Medium,['Too Expensive'],Discussing flexible payment plans,SecureIns,Jane Smith,Sales Manager,email,highlight tailored benefits.,Protect Your Fleet with Flexible Payment Plans,"Hi Michael,
+
+As the Head of Logistics at AutoDrive, you understand the importance of ensuring your fleet is protected from unforeseen risks. At SecureIns, we specialize in providing tailored insurance solutions to the automotive industry.
+
+We've worked with numerous companies like yours, and we're confident our flexible payment plans can help you manage your insurance costs more effectively. Our plans are designed to adapt to your business needs, providing you with the coverage you need without breaking the bank.
+
+I'd love to discuss how our insurance solutions can benefit AutoDrive. Would you be open to a quick call to explore how we can help?
+
+Best regards,
+Jane Smith
+Sales Manager, SecureIns","Since Michael has shown medium engagement level, it's essential to follow up with a phone call within 3-4 days if he doesn't respond. Leave a voicemail highlighting the benefits of flexible payment plans and how it can help AutoDrive. If he still doesn't respond, send a second email 7-10 days later, addressing the potential objection of 'Too Expensive' by providing a case study of a similar company that has benefited from our insurance solutions. This will help build credibility and showcase the value we can bring to his business."
